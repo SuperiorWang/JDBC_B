@@ -1,1 +1,7 @@
 /build
+# Ignore all logfiles and tempfiles.
+.classpath
+.project
+.settings
+.git
+.gitignore
