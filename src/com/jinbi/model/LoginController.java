@@ -1,11 +1,11 @@
-package com.ht.servlet;
+package com.jinbi.model;
 
 import java.sql.SQLException;
 
-import com.db.servlet.JDBC_Servlet;
-import com.security.md5.securityCode;
+import com.jinbi.util.MD5Util;
+import com.jinbi.util.MysqlDbHelper;
 
-public class LoginBean {
+public class LoginController {
 	private String name ;
 	private String pwd ;
 	
@@ -28,13 +28,12 @@ public class LoginBean {
 	/*查询数据库*/
 	public boolean Check() throws SQLException {
 		/*转换md5密码*/
-		securityCode security = new securityCode();
+		MD5Util security = new MD5Util();
 		security.setPlainText(this.pwd);
 		String pwd = security.getSecurity();   
 		
 		/*数据库的核实*/
-		JDBC_Servlet jdbc = new JDBC_Servlet();
-		//JDBC_Servlet jdbc = new JDBC_Servlet("jdbc:mysql://localhost:3306//text", "root","root");
+		MysqlDbHelper jdbc = new MysqlDbHelper();
 		
 		return jdbc.query(name, pwd);
 	}

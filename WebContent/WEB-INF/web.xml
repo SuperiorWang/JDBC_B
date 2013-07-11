@@ -5,13 +5,22 @@
   </welcome-file-list>
   
   <servlet>
-    <servlet-name>CheckLogin</servlet-name>
-    <servlet-class>com.ht.servlet.CheckLogin</servlet-class>
+    <servlet-name>User</servlet-name>
+    <servlet-class>com.jinbi.controller.User</servlet-class>
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>CheckLogin</servlet-name>
+    <servlet-name>User</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+    <servlet-name>Register</servlet-name>
+    <servlet-class>com.jinbi.controller.Register</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+   <servlet-name>Register</servlet-name>
+   <url-pattern>/register</url-pattern>
+  </servlet-mapping>
 </web-app>

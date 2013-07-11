@@ -10,8 +10,8 @@
 <%
 	com.jinbi.model.LoginController account = (com.jinbi.model.LoginController)session.getAttribute("account");
 %>
-<h1>登陆成功</h1>
-username:<%=account.getName() %>
-password:<%=account.getPwd() %>
+<h1>注册成功</h1>
+用户名:<%=account.getName() %>
+密 码 :<%=account.getPwd() %>
 </body>
 </html>

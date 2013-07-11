@@ -7,11 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%
-	com.jinbi.model.LoginController account = (com.jinbi.model.LoginController)session.getAttribute("account");
-%>
-<h1>登陆成功</h1>
-username:<%=account.getName() %>
-password:<%=account.getPwd() %>
+ <p>------------------------------------------------------------------</p>
+ <h1>这是一个注册界面</h1><br/>
+ <form action="register">
+ 	username:<input type="text" name="username" id="username"/><br/>
+	password:<input type="password" name="pwd" id="pwd"/><br/>
+	<input type="submit" value="注册"/><br/>
+ </form>
 </body>
 </html>

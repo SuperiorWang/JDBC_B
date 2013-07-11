@@ -1,4 +1,4 @@
-package com.ht.servlet;
+package com.jinbi.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class CheckLogin extends HttpServlet {
+import com.jinbi.model.LoginController;
+
+public class User extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String name = request.getParameter("name");
@@ -19,7 +21,7 @@ public class CheckLogin extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		
-		LoginBean account = new LoginBean();
+		LoginController account = new LoginController();
 		account.setName(name);
 		account.setPwd(pwd);
 		
@@ -32,7 +34,6 @@ public class CheckLogin extends HttpServlet {
 				return ;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -43,7 +44,6 @@ public class CheckLogin extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request,response);
-		
 	}
 
 }

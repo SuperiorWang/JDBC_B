@@ -1,36 +1,60 @@
-package com.db.servlet;
+package com.jinbi.util;
 
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.mysql.jdbc.Connection;
+import com.mysql.jdbc.PreparedStatement;
 import com.mysql.jdbc.Statement;
 
-public class JDBC_Servlet {
+public class MysqlDbHelper {
 	private Connection conn;
 	private Statement st;
+	private PreparedStatement pstmt;
 
-	/*public JDBC_Servlet(String url,String root,String pwd) 
+	public boolean insert(String name,String pwd)
 	{
-		try {
+		boolean flag = false;
+		try{
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306//text", "root","root") ;
-			//conn = (Connection) DriverManager.getConnection(url,root,pwd);
-		} catch (Exception e) {
-			System.out.println("连接数据库失败" + e.getMessage());
-		} 
-	}*/
+			
+			conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root","root");
+			pstmt = (PreparedStatement) conn.prepareStatement("INSERT INTO staff values(?,?)");	
+			
+			pstmt.setString(1, name);
+			pstmt.setString(2, pwd);
+			pstmt.executeUpdate();
+			
+			flag = true;
+		}catch(Exception e){
+			System.out.println("插入失败!");
+		}finally{
+			if (st != null){
+				try {
+					st.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				st = null;
+			}
+			if (conn != null){
+				try {
+					conn.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				conn = null;
+			}
+		}
+		return flag;
+	}
 	
 	public boolean query(String name,String pwd) throws SQLException
 	{
 		boolean  flag = false;
 		try{
-			System.out.println("do JDBC_Servlet1");
-			
 			Class.forName("com.mysql.jdbc.Driver");
-			
-			System.out.println("do JDBC_Servlet2");
 			
 			conn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/test", "root","root") ;
 			st = (Statement) conn.createStatement();
@@ -51,9 +75,15 @@ public class JDBC_Servlet {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}finally{
-			if(conn !=  null)
+			if (st != null){
+				st.close();
+				st = null;
+			}
+			if(conn !=  null){
 				conn.close();
+				conn = null;
+			}
 		}
-		//return flag;
+		return flag;
 	}
 }

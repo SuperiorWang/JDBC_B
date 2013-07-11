@@ -1,9 +1,9 @@
-package com.security.md5;
+package com.jinbi.util;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class securityCode {
+public class MD5Util {
 	private String PlainText;
 	
 	public void setPlainText(String PlainText)
